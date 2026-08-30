@@ -1,5 +1,21 @@
 const VIBER_CHAT_URL = "viber://chat?number=%2B38762257591";
 
+document.querySelectorAll('a[href="#projekti"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const projectsSection = document.getElementById("projekti");
+    if (!projectsSection) return;
+
+    event.preventDefault();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    projectsSection.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+    window.history.replaceState(null, "", "#projekti");
+
+    projectsSection.classList.remove("projects-highlight");
+    void projectsSection.offsetWidth;
+    projectsSection.classList.add("projects-highlight");
+  });
+});
+
 document.querySelectorAll(".binary-field span").forEach((column) => {
   column.textContent = (column.textContent + " ").repeat(9);
 });
