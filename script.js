@@ -1,95 +1,45 @@
-const EMAIL = "skrndic.web@gmail.com";
-const WHATSAPP_NUMBER = "38762257591";
-const PHONE_DISPLAY = "062 257 591";
-const FACEBOOK_URL = "https://www.facebook.com/semirkrndicweb/";
+const VIBER_CHAT_URL = "viber://chat?number=%2B38762257591";
 
 document.querySelectorAll(".binary-field span").forEach((column) => {
   column.textContent = (column.textContent + " ").repeat(9);
 });
 
-const emailLink = document.getElementById("email-link");
-const emailText = document.getElementById("email-text");
+function copyMessage(message) {
+  const textArea = document.createElement("textarea");
+  textArea.value = message;
+  textArea.style.position = "fixed";
+  textArea.style.opacity = "0";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  document.execCommand("copy");
+  textArea.remove();
 
-if (emailLink) emailLink.href = `mailto:${EMAIL}`;
-if (emailText) emailText.textContent = EMAIL;
-
-const phoneContact = document.getElementById("phone-contact");
-
-if (phoneContact) {
-  phoneContact.classList.remove("pending-contact");
-  phoneContact.style.cursor = "pointer";
-  phoneContact.setAttribute("role", "link");
-  phoneContact.setAttribute("tabindex", "0");
-
-  const phoneText = document.getElementById("phone-text");
-  if (phoneText) phoneText.textContent = PHONE_DISPLAY;
-
-  phoneContact.addEventListener("click", () => {
-    window.location.href = "tel:+38762257591";
-  });
-}
-
-const facebookContact = document.getElementById("facebook-contact");
-
-if (facebookContact) {
-  facebookContact.classList.remove("pending-contact");
-  facebookContact.style.cursor = "pointer";
-  facebookContact.setAttribute("role", "link");
-  facebookContact.setAttribute("tabindex", "0");
-
-  const facebookText = document.getElementById("facebook-text");
-  if (facebookText) facebookText.textContent = "Semir Krndić Web";
-
-  facebookContact.addEventListener("click", () => {
-    window.open(FACEBOOK_URL, "_blank", "noopener,noreferrer");
-  });
-}
-
-const contactForm = document.getElementById("contact-form");
-
-if (contactForm) {
-  const submitButton = contactForm.querySelector('button[type="submit"]');
-  const formNote = contactForm.querySelector(".form-note");
-
-  if (submitButton) {
-    submitButton.innerHTML =
-      'Pošalji putem WhatsAppa <span>➤</span>';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(message).catch(() => {});
   }
-
-  if (formNote) {
-    formNote.textContent =
-      "Otvorit će se WhatsApp sa pripremljenom porukom. Potrebno je samo pritisnuti Send.";
-  }
-
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const data = new FormData(contactForm);
-    const name = String(data.get("name") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    const message = String(data.get("message") || "").trim();
-
-    if (!phone) {
-      alert("Molimo unesite broj telefona.");
-      return;
-    }
-
-    const whatsappMessage = [
-      "Pozdrav, javljam se putem vaše web stranice.",
-      "",
-      `Ime / naziv firme: ${name}`,
-      `Broj telefona: ${phone}`,
-      "",
-      "Potrebna mi je web stranica:",
-      message
-    ].join("\n");
-
-    const whatsappUrl =
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
-
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  });
 }
+
+document.getElementById("contact-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const name = String(data.get("name") || "").trim();
+  const phone = String(data.get("phone") || "").trim();
+  const message = String(data.get("message") || "").trim();
+  const viberMessage = [
+    "Pozdrav, javljam se putem vaše web stranice.",
+    "",
+    `Ime / naziv firme: ${name}`,
+    `Broj telefona: ${phone}`,
+    "",
+    "Potrebna mi je web stranica:",
+    message
+  ].join("\n");
+
+  copyMessage(viberMessage);
+  window.alert("Poruka je kopirana. Kada se Viber otvori, zalijepite poruku i pošaljite.");
+  window.location.href = VIBER_CHAT_URL;
+});
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -100,6 +50,4 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  observer.observe(element);
-});
+document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));

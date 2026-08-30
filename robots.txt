@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://semirkrndic05.github.io/semirkrndic-web/sitemap.xml

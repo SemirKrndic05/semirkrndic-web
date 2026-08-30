@@ -19,7 +19,13 @@ U stranici su već postavljeni:
 - telefon, WhatsApp i Viber: 062 257 591
 - Facebook: https://www.facebook.com/semirkrndicweb/
 
-Email koji koristi kontakt forma nalazi se na vrhu fajla script.js.
+Kontakt forma kopira pripremljenu poruku i otvara Viber razgovor sa brojem 062 257 591. Ispod forme nalaze se posebna Viber i WhatsApp dugmad.
+
+## SEO optimizacija
+
+Stranica sadrži optimizovan naslov i opis, prirodno raspoređene ključne fraze, canonical adresu, Open Graph podatke, strukturirane podatke o uslugama, `robots.txt` i `sitemap.xml`.
+
+Nakon objave dodaj adresu `https://semirkrndic05.github.io/semirkrndic-web/` u Google Search Console i pošalji sitemap adresu `sitemap.xml`. Kada spojiš vlastitu domenu, njenu adresu treba zamijeniti u fajlovima `index.html`, `robots.txt` i `sitemap.xml`.
 
 ## Vlastita domena
 
