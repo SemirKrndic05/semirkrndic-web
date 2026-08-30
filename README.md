@@ -21,6 +21,8 @@ U stranici su već postavljeni:
 
 Kontakt forma kopira pripremljenu poruku i otvara Viber razgovor sa brojem 062 257 591. Ispod forme nalaze se posebna Viber i WhatsApp dugmad.
 
+Dugme **Pogledaj moje radove** i stavka **Radovi** u meniju pomjeraju prikaz do projekata i kratko ih istaknu.
+
 ## SEO optimizacija
 
 Stranica sadrži optimizovan naslov i opis, prirodno raspoređene ključne fraze, canonical adresu, Open Graph podatke, strukturirane podatke o uslugama, `robots.txt` i `sitemap.xml`.
